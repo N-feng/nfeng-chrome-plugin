@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>新标签页</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+        html,body{height: 100%;}
+        body{font-family: 'Microsoft Yahei';margin:0;padding:0;}
+        .center {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #CCC;
+        }
+        .content {
+            position: absolute;
+            left: 20px;
+            top: 10px;
+        }
+        </style>
+</head>
+
+<body>
+    <div class="center">
+        <p>这是一个自定义Chrome开发者工具页面</p>
+    </div>
+    <div class="content">
+        <div><button id="check_jquery">检测当前页面jQuery</button></div>
+        <div><button id="open_resource">查看当前页面HTML代码的第20行</button></div>
+        <div><button id="test_inspect">审查当前页面第一张图片</button></div>
+        <div><button id="get_all_resources">获取当前页面所有Resources</button></div>
+    </div>
+    <script type="text/javascript" src="js/mypanel.js"></script>
+</body>
+
+</html>
