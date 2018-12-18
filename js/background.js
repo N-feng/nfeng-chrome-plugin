@@ -34,8 +34,13 @@ chrome.contextMenus.create({
 	title: '度娘翻译：%s', // %s表示选中的文字
 	contexts: ['selection'], // 只有当选中文字时才会出现此右键菜单
 	onclick: function(params) {
-		// 注意不能使用location.href，因为location是属于background的window对象
-		chrome.tabs.create({ url: 'https://www.baidu.com/s?ie=utf-8&wd=' + encodeURI(params.selectionText) });
+		let value = params.selectionText;
+		if (/^[A-Za-z]+$/.test(value)) {
+			openUrlNextTab('https://fanyi.baidu.com/?#en/zh/' + value);
+		}
+		if (/^[\u4e00-\u9fa5]+$/.test(value)) {
+			openUrlNextTab('https://fanyi.baidu.com/?#zh/en/' + value);
+		}
 	}
 });
 
@@ -67,8 +72,9 @@ chrome.omnibox.onInputChanged.addListener((text, suggest) => {
 	}
 	else {
 		suggest([
-			{ content: '百度搜索 ' + text, description: '百度搜索 ' + text },
 			{ content: '谷歌搜索 ' + text, description: '谷歌搜索 ' + text },
+			{ content: '度娘搜索 ' + text, description: '度娘搜索 ' + text },
+			{ content: '度娘翻译 ' + text, description: '度娘翻译 ' + text },
 		]);
 	}
 });
@@ -79,8 +85,17 @@ chrome.omnibox.onInputEntered.addListener((text) => {
 	if (!text) return;
 	var href = '';
 	if (text.endsWith('美女')) href = 'http://image.baidu.com/search/index?tn=baiduimage&ie=utf-8&word=' + text;
-	else if (text.startsWith('百度搜索')) href = 'https://www.baidu.com/s?ie=UTF-8&wd=' + text.replace('百度搜索 ', '');
 	else if (text.startsWith('谷歌搜索')) href = 'https://www.google.com.tw/search?q=' + text.replace('谷歌搜索 ', '');
+	else if (text.startsWith('度娘搜索')) href = 'https://www.baidu.com/s?ie=UTF-8&wd=' + text.replace('百度搜索 ', '');
+	else if (text.startsWith('度娘翻译')) {
+		let value = text.replace('度娘翻译 ', '');
+		if (/^[A-Za-z]+$/.test(value)) {
+			href = 'https://fanyi.baidu.com/?#en/zh/' + value;
+		}
+		if (/^[\u4e00-\u9fa5]+$/.test(value)) {
+			href = 'https://fanyi.baidu.com/?#zh/en/' + value;
+		}
+	}
 	else href = 'https://www.baidu.com/s?ie=UTF-8&wd=' + text;
 	openUrlCurrentTab(href);
 });
@@ -92,9 +107,23 @@ function getCurrentTabId(callback) {
 	});
 }
 
+// 获取当前选项卡index
+function getCurrentTabIndex(callback) {
+	chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+		if (callback) callback(tabs.length ? tabs[0].index : null);
+	});
+}
+
 // 当前标签打开某个链接
 function openUrlCurrentTab(url) {
 	getCurrentTabId(tabId => {
 		chrome.tabs.update(tabId, { url: url });
+	})
+}
+
+// 下个标签打开某个连接
+function openUrlNextTab(url) {
+	getCurrentTabIndex(index => {
+		chrome.tabs.create({index: index + 1, url: url});
 	})
 }
