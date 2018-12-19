@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
             $('[data-tuiguang]').parents('[data-click]').remove();
         }
         fuckBaiduAD();
-        initCustomPanel();
+        // initCustomPanel();
         initCustomEventListen();
     }
 });
@@ -64,7 +64,7 @@ function initCustomPanel() {
 
 // 向页面注入JS
 function injectCustomJs(jsPath) {
-    jsPath = jsPath || 'js/inject.js';
+    jsPath = jsPath || 'web_js/inject.js';
     var temp = document.createElement('script');
     temp.setAttribute('type', 'text/javascript');
     // 获得的地址类似：chrome-extension://ihcokhadfjfchaeagdoclpnjdiokfakg/js/inject.js

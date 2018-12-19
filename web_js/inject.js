@@ -1,4 +1,4 @@
-// 向content-script主动发送消息:
+// 向content-script主动发送消息(三种方法):
 // 通过postMessage调用content-script
 function invokeContentScript(code) {
     window.postMessage({ cmd: 'invoke', code: code }, '*');
@@ -54,8 +54,20 @@ function sendMessageToContentScriptByPostMessage(data) {
 
     window.clown = clown;
 
-    clown({message:'欢迎使用nfeng-chrome-plugin'});
+    clown({ message: '欢迎使用nfeng-chrome-plugin' });
 })();
 
-
-
+// 设置默认的 autofill data
+(() => {
+    var aValue = localStorage.getItem('data-autofill');
+    if (!aValue) {
+        var data = {
+            "name": "John Doe",
+            "email": "johndoe@mail.com",
+            "lovejquery": "yes",
+            "username": "John Doe",
+            "password": "123456"
+        };
+        localStorage.setItem("data-autofill", JSON.stringify(data));
+    }
+})();

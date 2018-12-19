@@ -23,7 +23,7 @@ window.onload = () => {
              * @param action {string} 值为'all'或'attr'，如果为all，则收集所有图片，为attr则只收集属性图
              * @param attr {string} 用;分隔开的属性规则
              */
-            // 向 content_scripts 主动发送消息
+            // 向 content_scripts/imageDownloader.js 主动发送消息
             sendMessage(action, attr) {
                 chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
                     chrome.tabs.sendMessage(tabs[0].id, { action, attr }, (response) => {

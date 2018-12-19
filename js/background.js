@@ -13,6 +13,15 @@
 // });
 
 chrome.contextMenus.create({
+	title: "表单自动填充",
+	onclick: function() {
+		sendMessageToContentScript({ cmd: 'autofill', value: '你好，我是background！' }, function(response) {
+			console.log('来自content的回复：' + response);
+		});
+	}
+});
+
+chrome.contextMenus.create({
 	title: '谷歌搜索：%s', // %s表示选中的文字
 	contexts: ['selection'], // 只有当选中文字时才会出现此右键菜单
 	onclick: function(params) {
@@ -22,7 +31,7 @@ chrome.contextMenus.create({
 });
 
 chrome.contextMenus.create({
-	title: '度娘搜索：%s', // %s表示选中的文字
+	title: '百度搜索：%s', // %s表示选中的文字
 	contexts: ['selection'], // 只有当选中文字时才会出现此右键菜单
 	onclick: function(params) {
 		// 注意不能使用location.href，因为location是属于background的window对象
@@ -31,7 +40,7 @@ chrome.contextMenus.create({
 });
 
 chrome.contextMenus.create({
-	title: '度娘翻译：%s', // %s表示选中的文字
+	title: '百度翻译：%s', // %s表示选中的文字
 	contexts: ['selection'], // 只有当选中文字时才会出现此右键菜单
 	onclick: function(params) {
 		let value = params.selectionText;
@@ -73,8 +82,8 @@ chrome.omnibox.onInputChanged.addListener((text, suggest) => {
 	else {
 		suggest([
 			{ content: '谷歌搜索 ' + text, description: '谷歌搜索 ' + text },
-			{ content: '度娘搜索 ' + text, description: '度娘搜索 ' + text },
-			{ content: '度娘翻译 ' + text, description: '度娘翻译 ' + text },
+			{ content: '百度搜索 ' + text, description: '百度搜索 ' + text },
+			{ content: '百度翻译 ' + text, description: '百度翻译 ' + text },
 		]);
 	}
 });
@@ -86,9 +95,9 @@ chrome.omnibox.onInputEntered.addListener((text) => {
 	var href = '';
 	if (text.endsWith('美女')) href = 'http://image.baidu.com/search/index?tn=baiduimage&ie=utf-8&word=' + text;
 	else if (text.startsWith('谷歌搜索')) href = 'https://www.google.com.tw/search?q=' + text.replace('谷歌搜索 ', '');
-	else if (text.startsWith('度娘搜索')) href = 'https://www.baidu.com/s?ie=UTF-8&wd=' + text.replace('百度搜索 ', '');
-	else if (text.startsWith('度娘翻译')) {
-		let value = text.replace('度娘翻译 ', '');
+	else if (text.startsWith('百度搜索')) href = 'https://www.baidu.com/s?ie=UTF-8&wd=' + text.replace('百度搜索 ', '');
+	else if (text.startsWith('百度翻译')) {
+		let value = text.replace('百度翻译 ', '');
 		if (/^[A-Za-z]+$/.test(value)) {
 			href = 'https://fanyi.baidu.com/?#en/zh/' + value;
 		}
@@ -126,4 +135,13 @@ function openUrlNextTab(url) {
 	getCurrentTabIndex(index => {
 		chrome.tabs.create({ index: index + 1, url: url });
 	})
+}
+
+// 向 content 主动发送消息
+function sendMessageToContentScript(message, callback) {
+	chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+		chrome.tabs.sendMessage(tabs[0].id, message, function(response) {
+			if (callback) callback(response);
+		});
+	});
 }
