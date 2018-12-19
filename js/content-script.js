@@ -84,6 +84,8 @@ function sendMessageToBackground(message) {
     });
 }
 
+// 接收来自injected script的消息
+// 第一种
 window.addEventListener("message", function(e) {
     console.log('收到消息：', e.data);
     if (e.data && e.data.cmd == 'invoke') {
@@ -93,7 +95,7 @@ window.addEventListener("message", function(e) {
         tip(e.data.data);
     }
 }, false);
-
+// 第二种
 function initCustomEventListen() {
     var hiddenDiv = document.getElementById('myCustomEventDiv');
     if (!hiddenDiv) {

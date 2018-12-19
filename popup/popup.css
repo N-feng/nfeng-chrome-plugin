@@ -1,0 +1,129 @@
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.app {
+  width: 700px;
+  margin: 0 auto;
+}
+
+.define-attr {
+  margin-top: 20px;
+  box-sizing: border-box;
+  width: 100%;
+  padding-right: 20px;
+}
+
+.define-attr input {
+  width: 100%;
+}
+
+.img-container {
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.img-list {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin-left: 20px;
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  /* line-height: 200px; */
+  text-align: center;
+}
+
+.img-item {
+  width: 150px;
+  height: 150px;
+  line-height: 150px;
+  /* overflow: scroll; */
+}
+
+.download-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 10px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.img-item::nth-child(4n) {
+  margin-right: 20px;
+}
+
+.img-item img {
+  max-width: 100%;
+  /* margin: 0 auto; */
+  max-height: 149px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.img-info {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 10px;
+  line-height: 1;
+}
+
+.select-show-area {
+  padding: 20px 20px 0;
+}
+
+.filter {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.filter-item {
+  /* flex: 1; */
+  /* margin-left: 20px; */
+  margin-right: 20px;
+}
+
+h2 {
+  margin: 20px 20px 0;
+}
+
+.nf-input__inner {
+  -webkit-appearance: none;
+  background-color: #fff;
+  background-image: none;
+  border-radius: 4px;
+  border: 1px solid #dcdfe6;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #606266;
+  display: inline-block;
+  font-size: inherit;
+  height: 40px;
+  line-height: 40px;
+  outline: none;
+  padding: 0 15px;
+  -webkit-transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  /* width: 100%; */
+}
+
+.nf-input--small.nf-input__inner {
+  height: 34px;
+  line-height: 34px;
+}

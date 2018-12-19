@@ -2,26 +2,42 @@
 	"manifest_version": 2,
 	"name": "nfeng-chrome-plugin",
 	"version": "1.0.0",
-	"background": 
-	{
-		"scripts": ["js/background.js"]
+	"background": {
+		"scripts": [
+			"js/background.js"
+		]
 	},
-	"page_action":
-	{
-		"default_title": "这是一个示例Chrome插件",
-		"default_popup": "popup.html"
+	"browser_action": {
+		"default_popup": "/popup/popup.html"
 	},
-	"permissions": ["declarativeContent", "contextMenus", "tabs"],
-	"content_scripts": 
-	[
+	"permissions": [
+		"declarativeContent",
+		"contextMenus",
+		"tabs",
+		"downloads"
+	],
+	"content_scripts": [
 		{
-			"matches": ["<all_urls>"],
-			"js": ["js/jquery-1.8.3.js", "js/content-script.js"],
-			"css": ["css/custom.css"],
+			"matches": [
+				"<all_urls>"
+			],
+			"js": [
+				"lib/jquery-1.8.3.js",
+				"js/content-script.js",
+				"js/common.js",
+				"js/imageDownloader.js"
+			],
+			"css": [
+				"css/custom.css"
+			],
 			"run_at": "document_start"
 		}
 	],
-	"web_accessible_resources": ["js/inject.js"],
-	"omnibox": { "keyword" : "nf" },
+	"web_accessible_resources": [
+		"js/inject.js"
+	],
+	"omnibox": {
+		"keyword": "nf"
+	},
 	"devtools_page": "devtools.html"
 }

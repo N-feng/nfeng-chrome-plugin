@@ -1,16 +1,16 @@
-chrome.runtime.onInstalled.addListener(function() {
-	chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
-		chrome.declarativeContent.onPageChanged.addRules([
-			{
-				conditions: [
-					// 只有打开百度才显示pageAction
-					new chrome.declarativeContent.PageStateMatcher({ pageUrl: { urlContains: 'baidu.com' } })
-				],
-				actions: [new chrome.declarativeContent.ShowPageAction()]
-			}
-		]);
-	});
-});
+// chrome.runtime.onInstalled.addListener(function() {
+// 	chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
+// 		chrome.declarativeContent.onPageChanged.addRules([
+// 			{
+// 				conditions: [
+// 					// 只有打开百度才显示pageAction
+// 					new chrome.declarativeContent.PageStateMatcher({ pageUrl: { urlContains: 'baidu.com' } })
+// 				],
+// 				actions: [new chrome.declarativeContent.ShowPageAction()]
+// 			}
+// 		]);
+// 	});
+// });
 
 chrome.contextMenus.create({
 	title: '谷歌搜索：%s', // %s表示选中的文字
@@ -124,6 +124,6 @@ function openUrlCurrentTab(url) {
 // 下个标签打开某个连接
 function openUrlNextTab(url) {
 	getCurrentTabIndex(index => {
-		chrome.tabs.create({index: index + 1, url: url});
+		chrome.tabs.create({ index: index + 1, url: url });
 	})
 }
