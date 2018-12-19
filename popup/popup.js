@@ -28,7 +28,7 @@ window.onload = () => {
                 chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
                     chrome.tabs.sendMessage(tabs[0].id, { action, attr }, (response) => {
                         if (action === 'all') {
-                            if (!response.attrImg) {
+                            if (!response) {
                                 alert('读取图片失败!')
                                 return;
                             }
