@@ -88,7 +88,7 @@ function sendMessageToBackground(message) {
 // 接收来自injected script的消息
 // 第一种
 window.addEventListener("message", function(e) {
-    console.log('收到消息：', e.data);
+    // console.log('收到消息：', e.data);
     if (e.data && e.data.cmd == 'invoke') {
         eval('(' + e.data.code + ')');
     }
