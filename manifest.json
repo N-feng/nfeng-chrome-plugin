@@ -14,7 +14,8 @@
 		"declarativeContent",
 		"contextMenus",
 		"tabs",
-		"downloads"
+		"downloads",
+		"storage"
 	],
 	"content_scripts": [
 		{

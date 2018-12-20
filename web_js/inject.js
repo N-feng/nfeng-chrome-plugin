@@ -59,15 +59,15 @@ function sendMessageToContentScriptByPostMessage(data) {
 
 // 设置默认的 autofill data
 (() => {
-    var aValue = localStorage.getItem('data-autofill');
+    var aValue = localStorage.getItem('Autofill');
     if (!aValue) {
         var data = {
             "name": "John Doe",
             "email": "johndoe@mail.com",
-            "lovejquery": "yes",
+            // "lovejquery": "yes",
             "username": "John Doe",
             "password": "123456"
         };
-        localStorage.setItem("data-autofill", JSON.stringify(data));
+        localStorage.setItem("Autofill", JSON.stringify(data));
     }
 })();

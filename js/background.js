@@ -12,6 +12,7 @@
 // 	});
 // });
 
+// 表单自动填充
 chrome.contextMenus.create({
 	title: "表单自动填充",
 	onclick: function() {
@@ -21,6 +22,7 @@ chrome.contextMenus.create({
 	}
 });
 
+// 谷歌搜索
 chrome.contextMenus.create({
 	title: '谷歌搜索：%s', // %s表示选中的文字
 	contexts: ['selection'], // 只有当选中文字时才会出现此右键菜单
@@ -30,6 +32,7 @@ chrome.contextMenus.create({
 	}
 });
 
+// 百度搜索
 chrome.contextMenus.create({
 	title: '百度搜索：%s', // %s表示选中的文字
 	contexts: ['selection'], // 只有当选中文字时才会出现此右键菜单
@@ -39,6 +42,7 @@ chrome.contextMenus.create({
 	}
 });
 
+// 百度翻译
 chrome.contextMenus.create({
 	title: '百度翻译：%s', // %s表示选中的文字
 	contexts: ['selection'], // 只有当选中文字时才会出现此右键菜单

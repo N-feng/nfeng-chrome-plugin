@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// 向页面注入DOM
 function initCustomPanel() {
     var panel = document.createElement('div');
     panel.className = 'chrome-plugin-demo-panel';

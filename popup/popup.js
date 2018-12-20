@@ -3,6 +3,8 @@ window.onload = () => {
         el: '#app',
         data() {
             return {
+                isShowSelect: true, // 是否显示图片筛选区
+                isShowFilter: true, // 是否显示筛选长和宽
                 isShowAttr: false, // 是否显示属性图片
                 isShowBg: true, // 是否显示背景图片
                 isShowImg: true, // 是否显示img图片
@@ -15,6 +17,7 @@ window.onload = () => {
                     bgImg: [], // 背景图
                     img: [], // img标签图
                 },
+                message: '' // 消息提示
             }
         },
         methods: {
@@ -29,7 +32,9 @@ window.onload = () => {
                     chrome.tabs.sendMessage(tabs[0].id, { action, attr }, (response) => {
                         if (action === 'all') {
                             if (!response) {
-                                alert('读取图片失败!')
+                                this.isShowSelect = false;
+                                this.isShowFilter = false;
+                                this.message = '读取图片失败!';
                                 return;
                             }
                             const attrImg = response.attrImg

@@ -12,7 +12,7 @@
 <body>
     <div id="app" class="app">
         <!--图片筛选区-->
-        <div class="select-show-area">
+        <div class="select-show-area" v-if="isShowSelect">
             <label v-if="false">
                 <input type="checkbox" v-model="isShowAttr">
                 显示自定义图片
@@ -31,7 +31,7 @@
             <input @keyup="getAttrImg" type="text" placeholder="自定义抓取图片属性，多个属性以英文,隔开" v-model="attr">
         </div>
         <!--筛选长和宽-->
-        <div class="filter">
+        <div class="filter" v-if="isShowFilter">
             <label class="filter-item">
                 <!-- 长>: -->
                 <input type="number" v-model="imgWidth" class="nf-input__inner nf-input--small" placeholder="过滤宽(大于)">
@@ -86,6 +86,8 @@
                 </div>
             </li>
         </ul>
+        <!--消息提示-->
+        <span style="white-space: nowrap;">{{message}}</span>
     </div>
 </body>
 
