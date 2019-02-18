@@ -57,6 +57,15 @@ chrome.contextMenus.create({
 	}
 });
 
+// 图片上传
+chrome.contextMenus.create({
+	title: '图片上传',
+	contexts: ['image'],
+	onclick: function(params) {
+		sendMessageToContentScript(params)
+	}
+})
+
 // 监听来自content-script的消息
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	console.log('收到来自content-script的消息：');
