@@ -74,7 +74,11 @@ function injectCustomJs(jsPath) {
         // 放在页面不好看，执行完后移除掉
         this.parentNode.removeChild(this);
     };
-    document.body.appendChild(temp);
+    try {
+        document.body.appendChild(temp);
+    } catch (e) {
+        console.log(e)
+    }
 }
 
 // 主动发送消息给后台
