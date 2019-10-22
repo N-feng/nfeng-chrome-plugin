@@ -1,21 +1,22 @@
-#### 一个机智的谷歌拓展
+## Project setup
+```
+npm install
+```
 
-目前实现功能:
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-##### 1.右键搜索/百度翻译
+### Compiles and minifies for production
+```
+npm run build
+```
 
-##### 2.地址栏搜索建议 nf 打开 隐藏关卡
+### Lints and fixes files
+```
+npm run lint
+```
 
-(ps.以上两个功能的百度翻译皆为智能识别英文汉字翻译)
-
-##### 3.新增 clown 方法
-
-##### 4.网页图片资源下载
-
-##### 5.表单填充(支持自定义配置)
-
-(ps.暂不支持vue表单填充 因为改变dom的值不影响原来数据)
-
-> 有好的思路可以私聊我，谢谢。
-
----
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
